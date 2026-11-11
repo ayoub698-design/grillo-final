@@ -6,29 +6,40 @@ import { layout } from '../layout.mjs';
 import { eyebrow, button, icon, widthBand, floorTile, genImg, productImg, squeegeeArc, wetTrail, cta, MAX_WIDTH, strip } from '../components.mjs';
 import { heroPicture } from '../../../lib/media.mjs';
 
+// Hero: the title stands on the horizon of a polished marble floor; its reflection lies on the floor,
+// under a dust haze that the cursor (and the RoboClean driving in) wipes away like a squeegee.
 function hero(ctx, m) {
   const pg = ctx.data.pages.home;
   const robot = ctx.data.products.find((p) => p.slug === 'roboclean-g-plus');
+  const src = ctx.asset(`img/cut/${robot.img}.webp`);
+  const callouts = [
+    { k: 'productivity', label: 'Rendement max. en mode autonome', unit: 'm²/h' },
+    { k: 'width', label: 'Largeur de travail', unit: 'mm' },
+  ].filter((c) => typeof robot.key?.[c.k] === 'number');
   return html`<section class="t-hero" aria-labelledby="h1" data-hero>
-    <div class="t-hero__stage">
-      <div class="t-hero__bg">${heroPicture(ctx, 'trace', 'Lobby en marbre blanc poli, vu au ras du sol')}</div>
+    <div class="t-hero__stage" data-hero-stage>
+      <div class="t-hero__bg" data-hero-bg>${heroPicture(ctx, 'trace', 'Lobby en marbre blanc poli, vu au ras du sol')}</div>
+      <div class="t-wrap t-hero__mirror" aria-hidden="true"><p class="t-display">${pg.h1}</p></div>
       <canvas class="t-hero__haze" data-haze aria-hidden="true"></canvas>
       <div class="t-hero__static" aria-hidden="true"></div>
-      <div class="t-hero__robot" data-robot>
-        <img class="t-hero__rimg" src="${ctx.asset(`img/cut/${robot.img}.webp`)}" alt="Autolaveuse autonome GRILLOO RoboClean G+" fetchpriority="high">
-        <img class="t-hero__rrefl" src="${ctx.asset(`img/cut/${robot.img}.webp`)}" alt="">
-      </div>
       <span class="t-hero__fade" aria-hidden="true"></span>
-      <div class="t-wrap t-hero__top">
-        <p class="t-mono t-hero__meta" data-fog>Catalogue 2024 · ${m.totals.products} machines · ${m.totals.gammes} gammes</p>
-        <h1 id="h1" class="t-display" data-dry>${pg.h1}</h1>
-        <p class="t-mono t-hero__hint" aria-hidden="true">${icon('arrow')} Passez le curseur comme une raclette</p>
+      <span class="t-hero__floorfade" aria-hidden="true"></span>
+      <div class="t-hero__robot" data-robot>
+        <img class="t-hero__rimg" src="${src}" alt="Autolaveuse autonome GRILLOO RoboClean G+" fetchpriority="high">
+        <img class="t-hero__rrefl" src="${src}" alt="">
+        <ul class="t-hero__callouts">${callouts.map((c, i) => html`<li class="t-hero__callout t-hero__callout--${i + 1}" data-callout><i aria-hidden="true"></i><span class="t-mono">${c.label}</span><b>${fmt(robot.key[c.k])}<small>${c.unit}</small></b></li>`)}</ul>
       </div>
-      <p class="t-mono t-hero__tag" data-fog>GRILLOO RoboClean G+ · jusqu’à 2 365 m²/h en mode autonome</p>
+      <div class="t-wrap t-hero__top" data-hero-top>
+        <p class="t-mono t-hero__meta" data-hero-in><span class="t-hero__dot" aria-hidden="true"></span>Catalogue 2024 · ${m.totals.products} machines · ${m.totals.gammes} gammes</p>
+        <h1 id="h1" class="t-display t-hero__title" data-hero-title>${pg.h1}</h1>
+      </div>
+      <p class="t-mono t-hero__hint" aria-hidden="true" data-hero-in><span class="t-hero__blade-ico"></span>Passez le curseur comme une raclette</p>
+      <span class="t-hero__cursor" aria-hidden="true" data-hero-cursor><i></i></span>
     </div>
     <div class="t-wrap t-hero__foot">
-      <p class="t-lead" data-fog>${fr(pg.intro)}</p>
-      <div class="t-actions" data-fog>${button(ctx.link('catalogue.html'), 'Explorer le catalogue')}${button(ctx.link('contact.html'), 'Demander un devis', { variant: 'line' })}</div>
+      <p class="t-lead" data-hero-in>${fr(pg.intro)}</p>
+      <div class="t-actions" data-hero-in>${button(ctx.link('catalogue.html'), 'Explorer le catalogue')}${button(ctx.link('contact.html'), 'Demander un devis', { variant: 'line' })}</div>
+      <a class="t-hero__scroll t-mono" href="#passes-title" data-hero-in aria-label="Aller aux gammes"><span>Défiler</span><i aria-hidden="true"></i></a>
     </div>
   </section>`;
 }
@@ -116,16 +127,48 @@ function guide(ctx) {
   </section>`;
 }
 
+const pad = (n) => String(n).padStart(2, '0');
+
+// Secteurs: a list of six places; a sticky "window" on the floor shows the active one,
+// each new image swept in by a curved squeegee edge. Scroll, hover or focus selects.
 function sectors(ctx, m) {
-  return html`<section class="t-section t-hscroll" aria-labelledby="s-title" data-hscroll>
-    <div class="t-wrap">${eyebrow(5, 'Secteurs')}<h2 id="s-title" class="t-h2" data-dry>Six environnements.</h2></div>
-    <div class="t-hscroll__vp" data-hscroll-vp><div class="t-hscroll__track" data-hscroll-track>
-      ${m.sectors.map((s, i) => html`<a class="t-hcard" href="${ctx.link('secteurs.html')}#${s.slug}">
-        <span class="t-hcard__media">${genImg(ctx, s.img, '', 't-hcard__img')}</span>
-        <span class="t-mono">${String(i + 1).padStart(2, '0')} · ${s.count} machines</span>
-        <span class="t-hcard__name">${s.name}</span>
-      </a>`)}
-    </div></div>
+  const n = m.sectors.length;
+  return html`<section class="t-section t-secs" aria-labelledby="s-title" data-secs>
+    <div class="t-wrap">
+      <div class="t-secs__head">
+        <div>${eyebrow(5, 'Secteurs')}<h2 id="s-title" class="t-h2" data-dry>Six environnements.</h2></div>
+        <p class="t-lead" data-fog>Pour chaque type de lieu, les machines que le catalogue GRILLOO recommande.</p>
+      </div>
+      <div class="t-secs__grid">
+        <div class="t-secs__col">
+          <span class="t-secs__wet" aria-hidden="true" data-secs-wet></span>
+          <ol class="t-secs__list">
+            ${m.sectors.map((s, i) => html`<li class="t-sec${i === 0 ? ' is-active' : ''}" data-sec="${i}">
+              <a class="t-sec__link" href="${ctx.link('secteurs.html')}#${s.slug}">
+                <span class="t-mono t-sec__idx">${pad(i + 1)}</span>
+                <span class="t-sec__name">${s.name}</span>
+                <span class="t-sec__count"><b>${s.count}</b><span class="t-mono">machines</span></span>
+                <span class="t-sec__go">${icon('arrow')}</span>
+              </a>
+              <div class="t-sec__more">
+                <span class="t-sec__m">${genImg(ctx, s.img, '', 't-sec__mimg')}</span>
+                <p class="t-sec__intro">${fr(s.intro)}</p>
+              </div>
+            </li>`)}
+          </ol>
+        </div>
+        <div class="t-secs__winwrap">
+          <div class="t-secs__win" aria-hidden="true" data-secs-win data-sheen>
+            ${m.sectors.map((s, i) => html`<figure class="t-secs__slide${i === 0 ? ' is-active' : ''}" data-sec-slide="${i}">
+              <span class="t-secs__frame">${genImg(ctx, s.img, '', 't-secs__img')}</span>
+              <figcaption class="t-secs__cap"><span class="t-mono">${pad(i + 1)} / ${pad(n)} · ${s.count} machines</span><span class="t-secs__capname">${s.name}</span><span class="t-secs__capintro">${fr(s.intro)}</span></figcaption>
+            </figure>`)}
+            <span class="t-mono t-secs__ill">Illustration</span>
+            <span class="t-secs__ticks">${m.sectors.map((s, i) => html`<i class="${i === 0 ? 'is-on' : ''}" data-sec-tick="${i}"></i>`)}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>`;
 }
 
@@ -138,7 +181,7 @@ function beforeAfter(ctx) {
     <div class="t-wrap">
       <div class="t-ba" data-ba style="--pos:50%">
         ${genImg(ctx, 'tex-terrazzo-propre', 'Sol en terrazzo propre (illustration)', 't-ba__img')}
-        <div class="t-ba__dirty" aria-hidden="true">${genImg(ctx, 'tex-terrazzo-propre', '', 't-ba__img')}</div>
+        <div class="t-ba__dirty" aria-hidden="true">${genImg(ctx, 'tex-terrazzo-sale', '', 't-ba__img')}</div>
         <span class="t-ba__tag t-mono t-ba__tag--l">Avant</span><span class="t-ba__tag t-mono t-ba__tag--r">Après</span>
         <input class="t-ba__range" type="range" min="0" max="100" value="50" aria-label="Comparer avant et après" data-ba-range>
         <span class="t-ba__handle" aria-hidden="true"><i></i></span>
@@ -147,21 +190,75 @@ function beforeAfter(ctx) {
   </section>`;
 }
 
+// Engagements: one long wet trail crossing the screen sideways (pinned on desktop);
+// each engagement de-fogs when the trail reaches its droplet.
+function trailPath(n) {
+  const pts = Array.from({ length: n }, (_, i) => [((i + 0.5) / n) * 1000, i % 2 ? 560 : 440]);
+  let d = `M0 500`;
+  let prev = [0, 500];
+  for (const p of [...pts, [1000, 500]]) {
+    const dx = (p[0] - prev[0]) / 2;
+    d += ` C${(prev[0] + dx).toFixed(1)} ${prev[1]} ${(p[0] - dx).toFixed(1)} ${p[1]} ${p[0].toFixed(1)} ${p[1]}`;
+    prev = p;
+  }
+  return d;
+}
+
 function values(ctx, m) {
-  return html`<section class="t-section t-values" aria-labelledby="v-title">
-    <div class="t-wrap">
-      ${eyebrow(7, 'Engagements')}
-      <h2 id="v-title" class="sr">Sept engagements</h2>
-      <ol class="t-values__list">${m.values.map((v, i) => html`<li class="t-value${i % 2 ? ' t-value--r' : ''}" data-fog><span class="t-mono">${String(i + 1).padStart(2, '0')}</span><h3 class="t-value__t">${v.title}</h3><p>${fr(v.text)}</p></li>`)}</ol>
+  const d = trailPath(m.values.length);
+  return html`<section class="t-section t-vals" aria-labelledby="v-title" data-vals>
+    <div class="t-vals__pin" data-vals-pin>
+      <div class="t-vals__track" data-vals-track>
+        <div class="t-vals__intro">
+          ${eyebrow(7, 'Engagements')}
+          <h2 id="v-title" class="t-h2" data-dry>Sept engagements.</h2>
+          <p class="t-lead" data-fog>${fr(ctx.data.brand.mission)}</p>
+          <p class="t-mono t-vals__hint" aria-hidden="true"><i></i>La trace avance avec le défilement</p>
+        </div>
+        <div class="t-vals__rail" style="--n:${m.values.length}" data-vals-rail>
+          <svg class="t-vals__svg t-vals__svg--dry" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><path d="${d}"/></svg>
+          <svg class="t-vals__svg t-vals__svg--wet" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true" data-vals-wet>
+            <defs><linearGradient id="t-wet-g" x1="0" x2="1000" y1="0" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e9f5f7"/><stop offset="0.5" stop-color="#3fb6c2"/><stop offset="1" stop-color="#9fdde3"/></linearGradient></defs>
+            <path class="t-vals__glow" d="${d}"/><path class="t-vals__line" d="${d}"/>
+          </svg>
+          <ol class="t-vals__list">${m.values.map((v, i) => html`<li class="t-val t-val--${i % 2 ? 'down' : 'up'}" data-val>
+            <span class="t-val__drop" aria-hidden="true"></span>
+            <div class="t-val__card"><span class="t-mono t-val__n">${pad(i + 1)} / ${pad(m.values.length)}</span><h3 class="t-val__t">${v.title}</h3><p>${fr(v.text)}</p></div>
+          </li>`)}</ol>
+        </div>
+      </div>
     </div>
   </section>`;
 }
 
+// Guide pierre: seven passes over the same marble floor, from matte to mirror.
+// While pinned, scrolling advances the squeegee edge and the current step.
 function stone(ctx, m) {
-  return html`${wetTrail()}<section class="t-section t-stone" aria-labelledby="st-title">
-    <div class="t-wrap t-split">
-      <div>${eyebrow(8, 'Ressource')}<h2 id="st-title" class="t-h3" data-dry>Rénover un sol en pierre, en 7 passages.</h2><a class="t-link" href="${ctx.link('guides/renover-sol-pierre.html')}" data-fog>Lire le guide</a></div>
-      <ol class="t-stone__steps" data-fog>${m.steps.map((s) => html`<li><span class="t-mono">${String(s.n).padStart(2, '0')}</span>${s.title}</li>`)}</ol>
+  const machines = ctx.data.site.stoneMachines.map((s) => ctx.data.products.find((p) => p.slug === s)).filter(Boolean);
+  const n = m.steps.length;
+  return html`${wetTrail()}<section class="t-section t-stone" aria-labelledby="st-title" data-stone>
+    <div class="t-stone__pin" data-stone-pin>
+      <div class="t-wrap t-stone__grid">
+        <div class="t-stone__side">
+          ${eyebrow(8, 'Ressource')}
+          <h2 id="st-title" class="t-h3" data-dry>Rénover un sol en pierre, en ${n} passages.</h2>
+          <ol class="t-stone__list" data-stone-list>${m.steps.map((s, i) => html`<li class="t-stone__step${i === 0 ? ' is-active' : ''}" data-stone-step>
+            <span class="t-stone__n">${pad(s.n)}</span>
+            <div><h3 class="t-stone__t">${s.title}</h3><p>${fr(s.text)}</p></div>
+          </li>`)}</ol>
+          <div class="t-stone__rail" aria-hidden="true">${m.steps.map((s, i) => html`<i class="${i === 0 ? 'is-on' : ''}" data-stone-tick><span>${pad(s.n)}</span></i>`)}</div>
+          <a class="t-link" href="${ctx.link('guides/renover-sol-pierre.html')}">Lire le guide complet</a>
+        </div>
+        <div class="t-stone__visual">
+          <div class="t-stone__floor" data-stone-floor data-sheen>
+            ${genImg(ctx, 'tex-marbre-sale', 'Sol en marbre voilé avant rénovation (illustration)', 't-stone__img')}
+            <div class="t-stone__clean">${genImg(ctx, 'tex-marbre-propre', 'Le même sol en marbre poli après rénovation (illustration)', 't-stone__img')}</div>
+            <span class="t-stone__blade" aria-hidden="true"></span>
+            <span class="t-mono t-stone__tag t-stone__tag--l">Poli miroir</span><span class="t-mono t-stone__tag t-stone__tag--r">Sol voilé</span>
+          </div>
+          ${machines.length ? html`<div class="t-stone__machines"><p class="t-mono">Machines associées</p><ul>${machines.map((p) => html`<li><a href="${ctx.link(`produits/${p.slug}.html`)}">${productImg(ctx, p.img, '')}<span>${p.name}</span></a></li>`)}</ul></div>` : ''}
+        </div>
+      </div>
     </div>
   </section>`;
 }

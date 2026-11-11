@@ -65,6 +65,8 @@ ${ctx.head(styleTags(ctx))}
 </head>
 <body class="t-site t-page--${page || ctx.route.kind}">
 <a class="t-skip" href="#main">Aller au contenu</a>
+<div class="t-veil" aria-hidden="true" data-veil><div class="t-veil__panel"><span class="t-veil__mark"><img src="${ctx.asset('img/brand/logo-mark-cyan.png')}" alt="" width="88" height="32"></span></div></div>
+<span class="t-progress" aria-hidden="true" data-progress></span>
 ${header(ctx, overlay)}
 <main id="main">${body}</main>
 ${footer(ctx)}

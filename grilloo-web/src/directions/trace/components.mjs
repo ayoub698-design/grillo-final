@@ -18,7 +18,7 @@ export function eyebrow(index, label) {
 
 // Pill button with a squeegee "wipe" fill on hover.
 export function button(href, text, { variant = 'ink', iconName = 'arrow', attrs = '' } = {}) {
-  return html`<a class="t-btn t-btn--${variant}" href="${href}" ${raw(attrs)}><span class="t-btn__txt">${text}</span>${iconName ? icon(iconName, 't-btn__ico') : ''}<span class="t-btn__drop" aria-hidden="true"></span></a>`;
+  return html`<a class="t-btn t-btn--${variant}" href="${href}" ${raw(attrs)}><span class="t-btn__txt">${text}</span>${iconName ? icon(iconName, `t-btn__ico t-btn__ico--${iconName}`) : ''}<span class="t-btn__drop" aria-hidden="true"></span></a>`;
 }
 
 // Curved squeegee blade edge at the top of a section (fill = section background).

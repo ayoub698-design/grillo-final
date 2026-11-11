@@ -52,6 +52,10 @@ function footer(ctx) {
   </footer>`;
 }
 
+// Arrival half of the iris transition: if the previous page closed the iris (sessionStorage flag),
+// start covered and let main.js open it. Failsafe: uncover after 2.2 s whatever happens.
+const IRIS_BOOT = `<script>(function(d){try{if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(!sessionStorage.getItem('r-iris'))return;sessionStorage.removeItem('r-iris');d.classList.add('r-iris-in');setTimeout(function(){d.classList.remove('r-iris-in')},2200)}catch(e){}})(document.documentElement)</script>`;
+
 function compareTray() {
   return html`<div class="r-tray" data-compare-bar hidden><span class="r-tray__n"><span data-compare-count>0</span></span><span class="r-tray__list" data-compare-list></span>
     <button class="r-btn r-btn--ink r-btn--sm" type="button" data-compare-open><span class="r-btn__txt">Comparer</span></button><button class="r-tray__x" type="button" data-compare-clear aria-label="Vider">${icon('close')}</button></div>
@@ -66,10 +70,12 @@ ${ctx.head(styleTags(ctx))}
 </head>
 <body class="r-site r-page--${page || ctx.route.kind}">
 <a class="r-skip" href="#main">Aller au contenu</a>
-<div class="r-iris" aria-hidden="true" data-iris></div>
+<div class="r-iris" aria-hidden="true" data-iris><span class="r-iris__mark"><img src="${ctx.asset('img/brand/logo-mark-cyan.png')}" alt="" width="88" height="32"></span></div>
+${raw(IRIS_BOOT)}
 ${header(ctx)}
 <main id="main">${body}</main>
 ${footer(ctx)}
+<button class="r-top" type="button" aria-label="Revenir en haut de la page" data-top hidden><svg class="r-top__ring" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="28" class="r-top__track"/><circle cx="30" cy="30" r="28" pathLength="1" class="r-top__val" data-top-val/></svg>${icon('arrow', 'r-ico r-top__ico')}</button>
 ${data ? compareTray() : ''}
 ${data ? ctx.jsonScript('catalogue-data', slimProducts(ctx)) : ''}
 ${scriptTags(ctx)}

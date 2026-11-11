@@ -3,37 +3,56 @@ import { html } from '../../../lib/html.mjs';
 import { homeModel } from '../../../lib/view-models.mjs';
 import { fmt, fr } from '../../../lib/format.mjs';
 import { layout } from '../layout.mjs';
-import { kicker, button, orbitCta, icon, porthole, productImg, genImg, scallop, circleChain, cta, cluster } from '../components.mjs';
+import { kicker, button, orbitCta, icon, porthole, productImg, genImg, scallop, cta } from '../components.mjs';
 import { heroPicture } from '../../../lib/media.mjs';
 
 const pad = (n) => String(n).padStart(2, '0');
 
+// Hero « l'éclipse » : texte à gauche, système orbital à droite (planète-image, lune-produit, chiffres en orbite).
 function hero(ctx, m) {
   const pg = ctx.data.pages.home;
   const g9 = ctx.data.products.find((p) => p.slug === 'g9');
-  return html`<section class="r-hero" aria-labelledby="h1">
-    <div class="r-hero__stage">
-      <div class="r-hero__bg" data-spin-slow>${heroPicture(ctx, 'rondeur', 'Sol en terrazzo poli vu du dessus, cercles de polissage')}</div>
-      <span class="r-hero__rings" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span class="r-hero__brush" aria-hidden="true" data-spin>${genImg(ctx, 'obj-disque-brosse', '', '', true)}</span>
-      <span class="r-hero__foam" aria-hidden="true" data-float="12">${genImg(ctx, 'obj-ecume', '', '', true)}</span>
-      <span class="r-hero__drop" aria-hidden="true" data-float="8">${genImg(ctx, 'obj-goutte', '', '', true)}</span>
-      <a class="r-hero__port" href="${ctx.link('produits/g9.html')}" data-float="10" aria-label="Voir la fiche GRILLOO G9">
-        <span class="r-hero__portdisc">${productImg(ctx, g9.img, '', 'r-hero__portimg', true)}</span>
-        <span class="r-hero__portlbl"><b>G9</b> ${fmt(g9.key.productivity)} m²/h</span>
-      </a>
-      <div class="r-wrap r-hero__in">
-        <p class="r-hero__meta" data-pop>Catalogue 2024 · ${m.totals.products} machines · ${m.totals.gammes} gammes</p>
-        <h1 id="h1" class="r-display" data-rise>${pg.h1}</h1>
-        <div class="r-hero__actions" data-pop>${orbitCta(ctx.link('contact.html'))}${button(ctx.link('catalogue.html'), 'Explorer le catalogue', { variant: 'line' })}</div>
+  const figs = [
+    ['productivity', 'm²/h', 'Rendement théorique', -50],
+    ['width', 'mm', 'Largeur de travail', 12],
+    ['tank', 'L', 'Réservoir', 98],
+    ['autonomy', 'h', 'Autonomie', 156],
+  ].filter(([k]) => typeof g9.key[k] === 'number');
+  return html`<section class="r-hero" aria-labelledby="h1" data-hero>
+    <span class="r-hero__halo" aria-hidden="true"><i></i><i></i><i></i></span>
+    <div class="r-wrap r-hero__grid">
+      <div class="r-hero__text" data-depth="-6">
+        <p class="r-hero__meta" data-hi><span class="r-hero__metadot" aria-hidden="true"></span>Catalogue 2024 · ${m.totals.products} machines · ${m.totals.gammes} gammes</p>
+        <h1 id="h1" class="r-display r-hero__title" data-hero-title>${pg.h1}</h1>
+        <p class="r-lead r-hero__lead" data-hi>${fr(pg.intro)}</p>
+        <div class="r-hero__actions" data-hi>${orbitCta(ctx.link('contact.html'))}${button(ctx.link('catalogue.html'), 'Explorer le catalogue', { variant: 'line' })}</div>
+      </div>
+      <div class="r-hero__system" data-hero-system>
+        <svg class="r-hero__rings" viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="99" pathLength="1" data-hero-ring/>
+          <circle cx="100" cy="100" r="86" pathLength="1" class="is-dash" data-hero-ring/>
+        </svg>
+        <span class="r-hero__sat" aria-hidden="true"><i data-hpop></i></span>
+        <div class="r-hero__planet" data-hero-planet data-depth="8">
+          <div class="r-hero__bg" data-spin-slow><span class="r-hero__zoom" data-hero-zoom>${heroPicture(ctx, 'rondeur', 'Sol en terrazzo poli vu du dessus, cercles de polissage')}</span></div>
+        </div>
+        <span class="r-hero__brush" aria-hidden="true" data-hpop data-depth="22"><span data-spin>${genImg(ctx, 'obj-disque-brosse', '', '', true)}</span></span>
+        <span class="r-hero__drop" aria-hidden="true" data-hpop data-depth="30">${genImg(ctx, 'obj-goutte', '', '', true)}</span>
+        <a class="r-hero__moon" href="${ctx.link('produits/g9.html')}" data-hpop data-depth="16" data-tilt aria-label="Voir la fiche GRILLOO G9">
+          <span class="r-hero__moondisc">${productImg(ctx, g9.img, 'Autolaveuse autoportée GRILLOO G9', 'r-hero__moonimg', true)}</span>
+          <span class="r-hero__moonlbl"><b>G9</b> Autolaveuse autoportée</span>
+        </a>
+        <ul class="r-hero__figs" aria-label="Chiffres clés GRILLOO G9">
+          ${figs.map(([k, u, l, a]) => html`<li class="r-hero__fig" style="--a:${a}deg"><span data-hpop><b>${fmt(g9.key[k])}<small>${u}</small></b><em>${l}</em></span></li>`)}
+        </ul>
       </div>
     </div>
-    <div class="r-wrap r-hero__below"><p class="r-lead" data-pop>${fr(pg.intro)}</p></div>
+    <a class="r-hero__scroll" href="#gammes" data-hi><span class="r-hero__mouse" aria-hidden="true"><i></i></span>Défiler</a>
   </section>`;
 }
 
 function carousel(ctx, m) {
-  return html`<section class="r-section r-orbit" aria-labelledby="orbit-title">
+  return html`<section class="r-section r-orbit" id="gammes" aria-labelledby="orbit-title">
     <div class="r-wrap r-center">${kicker(1, 'Six gammes')}<h2 id="orbit-title" class="r-h2" data-rise>Faites tourner la gamme.</h2></div>
     <div class="r-carousel" data-carousel aria-roledescription="carrousel" aria-label="Gammes GRILLOO">
       <div class="r-carousel__ring" data-carousel-ring>
@@ -66,7 +85,7 @@ function robot(ctx, m) {
   return html`<section class="r-section r-robot" aria-labelledby="robot-title">
     ${scallop()}
     <div class="r-wrap r-robot__grid">
-      <div data-pop>${porthole(ctx, r.p.img, 'Autolaveuse autonome GRILLOO RoboClean G+', figs, { size: 'r-hub--xl' })}</div>
+      <div data-pop data-tilt>${porthole(ctx, r.p.img, 'Autolaveuse autonome GRILLOO RoboClean G+', figs, { size: 'r-hub--xl' })}</div>
       <div class="r-robot__text">
         ${kicker(2, 'Autonome et manuelle')}
         <h2 id="robot-title" class="r-h2" data-rise>RoboClean G+</h2>
@@ -96,31 +115,88 @@ function guide(ctx) {
   </section>`;
 }
 
+// 05 — Secteurs : « l'orbite des lieux ». Six hublots posés sur un grand arc ; le défilement fait tourner l'arc
+// et amène chaque lieu au sommet. Sans animation : rangée de hublots à faire défiler.
 function sectors(ctx, m) {
-  return html`<section class="r-section r-sectors" aria-labelledby="s-title">
-    <div class="r-wrap r-center">${kicker(4, 'Secteurs')}<h2 id="s-title" class="r-h2" data-rise>Six environnements.</h2></div>
-    <div class="r-wrap r-sectors__grid">
-      ${m.sectors.map((s) => html`<a class="r-sector" href="${ctx.link('secteurs.html')}#${s.slug}" data-pop>
-        <span class="r-sector__disc" data-float="6">${genImg(ctx, s.img, '', 'r-sector__img')}</span>
-        <span class="r-sector__name">${s.name}</span><span class="r-sector__n">${s.count} machines</span>
-      </a>`)}
+  return html`<section class="r-orb" aria-labelledby="s-title" data-orb>
+    <div class="r-orb__pin" data-orb-pin>
+      <div class="r-wrap r-orb__head">
+        <div>${kicker(4, 'Secteurs')}<h2 id="s-title" class="r-h2" data-rise>Six environnements.</h2></div>
+        <p class="r-orb__hint" data-pop><span class="r-orb__hintdot" aria-hidden="true"></span><span class="r-orb__hint--orbit">Chaque lieu vient au sommet de l’orbite : faites défiler ou choisissez un hublot.</span><span class="r-orb__hint--row">Faites glisser la rangée pour parcourir les six lieux.</span></p>
+      </div>
+      <div class="r-orb__stage" data-orb-stage>
+        <svg class="r-orb__ring" viewBox="0 0 100 100" aria-hidden="true" data-orb-ring><circle cx="50" cy="50" r="49.8"/></svg>
+        <span class="r-orb__apex" aria-hidden="true"></span>
+        <ol class="r-orb__list">
+          ${m.sectors.map((s, i) => html`<li class="r-orb__item${i === 0 ? ' is-active' : ''}" data-orb-item="${i}">
+            <a class="r-orb__port" href="${ctx.link('secteurs.html')}#${s.slug}" tabindex="-1" aria-hidden="true" data-orb-port>
+              <span class="r-orb__disc">${genImg(ctx, s.img, '', 'r-orb__img')}</span>
+              <span class="r-orb__n">${pad(i + 1)}</span>
+            </a>
+            <div class="r-orb__info">
+              <p class="r-orb__count"><b>${s.count}</b> machines associées</p>
+              <h3 class="r-orb__name">${s.name}</h3>
+              <p class="r-orb__intro">${fr(s.intro)}</p>
+              <a class="r-link" href="${ctx.link('secteurs.html')}#${s.slug}">Voir les machines<span class="sr"> : ${s.name}</span></a>
+            </div>
+          </li>`)}
+        </ol>
+        <p class="r-orb__pager" aria-hidden="true"><b data-orb-cur>01</b> / ${pad(m.sectors.length)}</p>
+      </div>
     </div>
   </section>`;
 }
 
+// 06 — Engagements : « le fil ». Une trajectoire en S se trace au défilement ; une bille cyan la parcourt
+// et allume chaque engagement au passage.
 function values(ctx, m) {
-  return html`<section class="r-section r-values" aria-labelledby="v-title">
-    ${circleChain()}
-    <div class="r-wrap r-center">${kicker(5, 'Engagements')}<h2 id="v-title" class="r-h2" data-rise>Sept engagements.</h2><p class="r-lead" data-pop>${fr(ctx.data.brand.mission)}</p></div>
-    <ol class="r-wrap r-pastilles">${m.values.map((v, i) => html`<li class="r-pastille" data-pop><span class="r-pastille__n">${pad(i + 1)}</span><h3>${v.title}</h3><p>${fr(v.text)}</p></li>`)}</ol>
+  return html`<section class="r-section r-thread" aria-labelledby="v-title" data-thread>
+    <div class="r-wrap r-thread__head">
+      <div>${kicker(5, 'Engagements')}<h2 id="v-title" class="r-h2" data-rise>Sept engagements.</h2></div>
+      <p class="r-lead" data-pop>${fr(ctx.data.brand.mission)}</p>
+    </div>
+    <div class="r-wrap">
+      <div class="r-thread__track" data-thread-track>
+        <svg class="r-thread__svg" aria-hidden="true" data-thread-svg><path class="r-thread__base" data-thread-base d=""/><path class="r-thread__line" data-thread-line d=""/></svg>
+        <span class="r-thread__bead" aria-hidden="true" data-thread-bead></span>
+        <ol class="r-thread__list">
+          ${m.values.map((v, i) => html`<li class="r-thread__node r-thread__node--${i % 2 ? 'r' : 'l'}" data-thread-node>
+            <span class="r-thread__dot" data-thread-dot><span>${pad(i + 1)}</span></span>
+            <div class="r-thread__txt" data-pop><h3>${v.title}</h3><p>${fr(v.text)}</p></div>
+          </li>`)}
+        </ol>
+      </div>
+    </div>
   </section>`;
 }
 
+// 07 — Guide pierre : « la piste de polissage ». Un plateau roule sur une bande de marbre voilé et le fait
+// briller derrière lui ; les 7 étapes s'allument à son passage.
 function stone(ctx, m) {
-  return html`<section class="r-section r-stone" aria-labelledby="st-title">
-    <div class="r-wrap r-center">${kicker(6, 'Ressource')}<h2 id="st-title" class="r-h3" data-rise>Rénover un sol en pierre en 7 étapes</h2></div>
-    <ol class="r-wrap r-steps7" data-pop>${m.steps.map((s) => html`<li><span>${s.n}</span>${s.title}</li>`)}</ol>
-    <div class="r-center" data-pop><a class="r-link" href="${ctx.link('guides/renover-sol-pierre.html')}">Lire le guide</a></div>
+  return html`<section class="r-section r-polish" aria-labelledby="st-title" data-polish>
+    <div class="r-wrap r-polish__head">
+      <div>${kicker(6, 'Ressource')}<h2 id="st-title" class="r-h2" data-rise>Rénover un sol en pierre, en 7 étapes.</h2></div>
+      <div class="r-polish__aside" data-pop>
+        <p class="r-lead">Du meulage initial à la crème de polissage : la méthode décrite dans le catalogue, et les machines associées.</p>
+        ${button(ctx.link('guides/renover-sol-pierre.html'), 'Lire le guide', { variant: 'line' })}
+      </div>
+    </div>
+    <div class="r-wrap r-polish__track" data-polish-track>
+      <figure class="r-polish__band" data-polish-band>
+        ${genImg(ctx, 'tex-marbre-propre', 'Sol en marbre poli (illustration)', 'r-polish__img')}
+        <span class="r-polish__dull" aria-hidden="true" data-polish-dull>${genImg(ctx, 'tex-marbre-sale', '', 'r-polish__img')}</span>
+        <span class="r-polish__clip" aria-hidden="true"><span class="r-polish__shine" data-polish-shine></span></span>
+        <span class="r-polish__pad" aria-hidden="true" data-polish-pad><span data-polish-spin>${genImg(ctx, 'obj-pad', '', '')}</span></span>
+        <figcaption class="r-polish__cap">Illustration</figcaption>
+      </figure>
+      <ol class="r-polish__steps">
+        ${m.steps.map((s) => html`<li class="r-polish__step" data-polish-step>
+          <span class="r-polish__n">${s.n}</span>
+          <h3>${s.title}</h3>
+          <p>${fr(s.text)}</p>
+        </li>`)}
+      </ol>
+    </div>
   </section>`;
 }
 

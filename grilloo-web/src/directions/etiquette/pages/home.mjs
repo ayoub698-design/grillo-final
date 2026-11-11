@@ -1,40 +1,66 @@
 // Étiquette — Accueil.
-import { html, raw } from '../../../lib/html.mjs';
+import { html } from '../../../lib/html.mjs';
 import { homeModel } from '../../../lib/view-models.mjs';
 import { fmt, fr } from '../../../lib/format.mjs';
 import { layout } from '../layout.mjs';
-import { cartel, notchRule, button, figure, productImg, genImg, tag, ctaCoupon, mosaic, marquee } from '../components.mjs';
-import { heroPicture } from '../../../lib/media.mjs';
+import { cartel, button, figure, productImg, genImg, tag, ctaCoupon, marquee } from '../components.mjs';
 import { icon } from '../icons.mjs';
 
 const pad = (n) => String(n).padStart(2, '0');
 
+// Hero « cartel monumental » : a printed sheet on the left (visible 12-column hairlines, display title),
+// the gallery panel on the right with the G9 on its plinth, dimension callouts and a museum label (cartel).
+// Every figure comes from catalog.json. Entrance choreography: main.js → heroIntro().
 function hero(ctx, m) {
   const g9 = ctx.data.products.find((p) => p.slug === 'g9');
   const pg = ctx.data.pages.home;
-  return html`<section class="e-hero e-scene" aria-labelledby="h1">
-    <div class="e-scene__stage">
-      <div class="e-scene__bg" data-kenburns>${heroPicture(ctx, 'etiquette', 'Galerie en marbre blanc baignée de lumière')}</div>
-      <span class="e-scene__beam" aria-hidden="true"></span>
-      <span class="e-scene__fade" aria-hidden="true"></span>
-      <figure class="e-scene__product" data-specimen>
-        <span class="e-scene__shadow" aria-hidden="true"></span>
-        ${productImg(ctx, g9.img, 'Autolaveuse autoportée GRILLOO G9', 'e-scene__img', true)}
-        <div class="e-callout e-callout--a" data-callout><svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M100 1 L62 1 L2 39"/></svg><p><span class="e-label">Rendement théorique</span><b>${fmt(g9.key.productivity)}<small>m²/h</small></b></p></div>
-        <div class="e-callout e-callout--b" data-callout><svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M100 1 L62 1 L2 39"/></svg><p><span class="e-label">Réservoir de solution</span><b>${fmt(g9.key.tank)}<small>L</small></b></p></div>
-        <figcaption class="e-caption e-scene__cap"><span class="e-caption__fig">Fig. 01</span> GRILLOO G9 · largeur ${fmt(g9.key.width)} mm</figcaption>
-      </figure>
-      <div class="e-wrap e-scene__title">
-        ${cartel(null, 'Catalogue 2024', `${m.totals.products} machines · ${m.totals.gammes} gammes`)}
-        <h1 id="h1" class="e-display" data-split>${pg.h1}</h1>
+  const specs = [
+    { label: 'Réservoir de solution', value: fmt(g9.key.tank), unit: 'L' },
+    { label: 'Autonomie', value: fmt(g9.key.autonomy), unit: 'h' },
+  ].filter((f) => f.value);
+  return html`<section class="e-hx" aria-labelledby="h1" data-hx>
+    <span class="e-hx__cols" aria-hidden="true" data-hx-cols></span>
+    <div class="e-hx__panel" data-hx-panel>
+      <div class="e-hx__scroll" data-hx-scroll>
+        <div class="e-hx__zoom" data-hx-zoom><div class="e-hx__ptr" data-hx-ptr="-8">${genImg(ctx, 'hero-etiquette-s', '', 'e-hx__photo', true)}</div></div>
+        <span class="e-hx__beam" aria-hidden="true"></span>
+        <div class="e-hx__plane">
+          <figure class="e-hx__product">
+            <div class="e-hx__rise" data-hx-product>
+              <div class="e-hx__ptr" data-hx-ptr="12">
+                <span class="e-hx__shadow" aria-hidden="true"></span>
+                ${productImg(ctx, g9.img, 'Autolaveuse autoportée GRILLOO G9', 'e-hx__img', true)}
+              </div>
+            </div>
+            <div class="e-callout e-hx__callout" data-callout><svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 1 L62 1 L98 39"/></svg><p><span class="e-label">Rendement théorique</span><b>${fmt(g9.key.productivity)}<small>m²/h</small></b></p></div>
+            <div class="e-hx__dim" data-hx-dim><span class="e-hx__dimline"></span><p><span class="e-label">Largeur de travail</span> <b>${fmt(g9.key.width)}<small>mm</small></b></p></div>
+          </figure>
+        </div>
       </div>
+      <span class="e-hx__marks" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="e-hx__ill" aria-hidden="true">Illustration</span>
     </div>
-    <div class="e-wrap e-scene__below">
-      <p class="e-lead" data-reveal>${fr(pg.intro)}</p>
-      <div class="e-hero__actions" data-reveal>
+    <div class="e-wrap e-hx__head">
+      <div class="e-hx__meta">
+        <span class="e-tag" data-hx-print>Catalogue 2024</span>
+        <span class="e-hx__rule" data-hx-rule></span>
+        <span class="e-label" data-hx-print>${m.totals.products} machines · ${m.totals.gammes} gammes</span>
+      </div>
+      <h1 id="h1" class="e-hx__title" data-hx-title>${pg.h1}</h1>
+    </div>
+    <a class="e-hx__cartel" href="${ctx.link('produits/g9.html')}" data-hx-cartel>
+      <span class="e-hx__ctop"><span class="e-caption__fig">Fig. 01</span><span class="e-hx__cnotch" aria-hidden="true"></span><span class="e-label">${g9.kind}</span></span>
+      <span class="e-hx__cname"><span class="e-card__brand">GRILLOO</span> ${g9.name}</span>
+      <span class="e-hx__specs">${specs.map((f) => html`<span class="e-hx__spec"><span class="e-label">${f.label}</span><b>${f.value}<small>${f.unit}</small></b></span>`)}</span>
+      <span class="e-hx__cgo">Fiche technique ${icon('arrow', 'e-link__ico')}</span>
+    </a>
+    <div class="e-wrap e-hx__pitch">
+      <p class="e-lead" data-hx-in>${fr(pg.intro)}</p>
+      <div class="e-hx__actions" data-hx-in>
         ${button(ctx.link('catalogue.html'), 'Explorer le catalogue')}
         ${button(ctx.link('contact.html'), 'Demander un devis', { variant: 'line' })}
       </div>
+      <p class="e-hx__scrollcue" aria-hidden="true" data-hx-in><span></span>Défiler</p>
     </div>
   </section>
   ${marquee(ctx.data.products.map((p) => p.name))}`;
@@ -121,51 +147,113 @@ function guideTeaser(ctx) {
   </section>`;
 }
 
+// 05 · Secteurs — « index des lieux » : list of places; the sticky plate on the left shows the active one
+// (hover, focus or scroll position). On small screens each row carries its own picture.
 function sectors(ctx, m) {
-  return html`<section class="e-section e-sectors" aria-labelledby="sectors-title">
+  return html`<section class="e-section e-sx" aria-labelledby="sectors-title" data-sx>
     <div class="e-wrap">
-      ${cartel(4, 'Secteurs')}
-      <h2 id="sectors-title" class="e-h2" data-split>Une machine pour chaque lieu.</h2>
-      <div class="e-sectors__grid">
-        ${m.sectors.map((s, i) => html`<a class="e-sector" href="${ctx.link('secteurs.html')}#${s.slug}" data-reveal>
-          <span class="e-sector__media" data-mask="up"><span class="e-sector__par" data-parallax="0.08">${genImg(ctx, s.img, '', 'e-sector__img')}</span></span>
-          <span class="e-sector__meta"><span class="e-sector__idx">${pad(i + 1)}</span><span class="e-sector__name">${s.name}</span><span class="e-label">${s.count} machines</span></span>
-        </a>`)}
-      </div>
-    </div>
-  </section>`;
-}
-
-function engagements(ctx, m) {
-  return html`<section class="e-section e-values" aria-labelledby="values-title">
-    <div class="e-wrap e-values__grid">
-      <div class="e-values__head">
-        ${cartel(5, 'Engagements')}
-        <h2 id="values-title" class="e-h2" data-split>Sept engagements.</h2>
-        <p class="e-lead" data-reveal>${fr(ctx.data.brand.mission)}</p>
-      </div>
-      <ol class="e-values__list">
-        ${m.values.map((v, i) => html`<li class="e-value" data-reveal><span class="e-value__idx">${pad(i + 1)}</span><h3 class="e-value__title">${v.title}</h3><p>${fr(v.text)}</p></li>`)}
-      </ol>
-    </div>
-  </section>`;
-}
-
-function stoneTeaser(ctx, m) {
-  return html`<section class="e-section e-stone" aria-labelledby="stone-title">
-    <div class="e-wrap">
-      ${notchRule('62%')}
-      <div class="e-stone__grid">
-        <div>
-          ${tag('Ressource')}
-          <h2 id="stone-title" class="e-h3 e-stone__title" data-split>Rénover un sol en pierre en 7 étapes</h2>
-          <p class="e-body" data-reveal>Du meulage initial à la crème de polissage : la méthode décrite dans le catalogue, et les machines associées.</p>
-          <a class="e-link" href="${ctx.link('guides/renover-sol-pierre.html')}" data-reveal>Lire le guide ${icon('arrow', 'e-link__ico')}</a>
+      ${cartel(4, 'Secteurs', `${pad(m.sectors.length)} environnements`)}
+      <div class="e-sx__grid">
+        <div class="e-sx__stage" aria-hidden="true">
+          <div class="e-sx__frame" data-mask="up">
+            ${m.sectors.map((s, i) => html`<span class="e-sx__shot${i === 0 ? ' is-active' : ''}" data-sx-shot="${i}">${genImg(ctx, s.img, '', 'e-sx__img')}</span>`)}
+            <span class="e-sx__crop"><i></i><i></i><i></i><i></i></span>
+            <span class="e-sx__ill">Illustration</span>
+          </div>
+          <div class="e-sx__plates">
+            ${m.sectors.map((s, i) => html`<div class="e-sx__plate${i === 0 ? ' is-active' : ''}" data-sx-plate="${i}">
+              <span class="e-caption__fig">Fig. ${pad(i + 1)}</span>
+              <p class="e-sx__ptext">${fr(s.intro)}</p>
+            </div>`)}
+          </div>
         </div>
-        <ol class="e-scale" data-scale>
-          ${m.steps.map((s) => html`<li><span class="e-scale__n">${pad(s.n)}</span><span class="e-scale__t">${s.title}</span></li>`)}
+        <div class="e-sx__side">
+          <h2 id="sectors-title" class="e-h2" data-split>Une machine pour chaque lieu.</h2>
+          <ol class="e-sx__list">
+            ${m.sectors.map((s, i) => html`<li data-reveal>
+              <a class="e-sx__row${i === 0 ? ' is-active' : ''}" href="${ctx.link('secteurs.html')}#${s.slug}" data-sx-row="${i}">
+                <span class="e-sx__thumb" aria-hidden="true">${genImg(ctx, s.img, '', 'e-sx__timg')}</span>
+                <span class="e-sx__idx">${pad(i + 1)}</span>
+                <span class="e-sx__ico" aria-hidden="true">${icon(s.slug)}</span>
+                <span class="e-sx__name">${s.name}</span>
+                <span class="e-sx__count"><b>${s.count}</b> machines</span>
+                <span class="e-sx__go" aria-hidden="true">${icon('arrow')}</span>
+              </a>
+            </li>`)}
+          </ol>
+          <a class="e-link e-sx__all" href="${ctx.link('secteurs.html')}" data-reveal>Tous les secteurs ${icon('arrow', 'e-link__ico')}</a>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+// 06 · Engagements — « fiches à onglets » : seven index cards on a track that slides horizontally
+// while the section is pinned (desktop, motion allowed); native swipe on touch; plain grid otherwise.
+function engagements(ctx, m) {
+  const n = m.values.length;
+  return html`<section class="e-section e-vx" aria-labelledby="values-title" data-vx>
+    <div class="e-vx__pin" data-vx-pin>
+      <div class="e-wrap">
+        ${cartel(5, 'Engagements', `${pad(n)} principes`)}
+        <div class="e-vx__head">
+          <h2 id="values-title" class="e-h2" data-split>Sept engagements.</h2>
+          <p class="e-lead" data-reveal>${fr(ctx.data.brand.mission)}</p>
+        </div>
+      </div>
+      <div class="e-vx__vp" data-vx-vp>
+        <ol class="e-vx__track" data-vx-track>
+          ${m.values.map((v, i) => html`<li class="e-vx__card" data-vx-card>
+            <span class="e-vx__tab"><b>${pad(i + 1)}</b> / ${pad(n)}</span>
+            <span class="e-vx__num" aria-hidden="true">${pad(i + 1)}</span>
+            <h3 class="e-vx__title">${v.title}</h3>
+            <p class="e-vx__text">${fr(v.text)}</p>
+            <span class="e-vx__foot" aria-hidden="true"><span class="e-vx__notch"></span></span>
+          </li>`)}
         </ol>
       </div>
+      <div class="e-wrap e-vx__bar" aria-hidden="true">
+        <span class="e-vx__ticks">${m.values.map((v, i) => html`<i data-vx-tick="${i}">${pad(i + 1)}</i>`)}</span>
+        <span class="e-vx__rail"><span class="e-vx__fill" data-vx-fill></span></span>
+      </div>
+    </div>
+  </section>`;
+}
+
+// 07 · Guide pierre — « échelle des grains » : a polishing band (veiled → polished marble) and a graduated
+// rule; both fill with the scroll and light each of the 7 steps. Grits are read from the step texts.
+function stoneTeaser(ctx, m) {
+  const grit = (t) => {
+    const g = [...String(t).matchAll(/#(\d+)/g)].map((x) => Number(x[1]));
+    if (!g.length) return '';
+    const lo = Math.min(...g), hi = Math.max(...g);
+    return lo === hi ? `#${fmt(lo)}` : `#${fmt(lo)} → #${fmt(hi)}`;
+  };
+  return html`<section class="e-section e-gx" aria-labelledby="stone-title" data-gx>
+    <div class="e-wrap">
+      ${cartel(6, 'Ressource', `${pad(m.steps.length)} étapes`)}
+      <div class="e-gx__head">
+        <h2 id="stone-title" class="e-h2" data-split>Rénover un sol en pierre en 7 étapes</h2>
+        <div class="e-gx__intro" data-reveal>
+          <p class="e-body">Du meulage initial à la crème de polissage : la méthode décrite dans le catalogue, et les machines associées.</p>
+          <a class="e-link" href="${ctx.link('guides/renover-sol-pierre.html')}">Lire le guide ${icon('arrow', 'e-link__ico')}</a>
+        </div>
+      </div>
+      <div class="e-gx__band" data-mask="left" aria-hidden="true">
+        ${genImg(ctx, 'tex-marbre-sale', '', 'e-gx__img')}
+        <span class="e-gx__tag e-gx__tag--r">Sol voilé</span>
+        <span class="e-gx__clean">${genImg(ctx, 'tex-marbre-propre', '', 'e-gx__img')}</span>
+        <span class="e-gx__edge"><i></i><span class="e-gx__tag e-gx__tag--l">Sol poli</span></span>
+      </div>
+      <p class="e-caption"><span class="e-caption__fig">Illustration</span> Marbre voilé puis poli, le long des 7 étapes.</p>
+      <div class="e-gx__rule" aria-hidden="true"><span class="e-gx__track"><span class="e-gx__rider"></span></span></div>
+      <ol class="e-gx__steps">
+        ${m.steps.map((s, i) => html`<li class="e-gx__step${i === 0 ? ' is-on' : ''}" data-gx-step="${i}">
+          <span class="e-gx__n">${pad(s.n)}</span>
+          <span class="e-gx__grit">${grit(s.text) || html`<span aria-hidden="true">—</span>`}</span>
+          <h3 class="e-gx__t">${s.title}</h3>
+        </li>`)}
+      </ol>
     </div>
   </section>`;
 }
