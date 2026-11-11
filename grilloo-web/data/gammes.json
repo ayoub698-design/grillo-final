@@ -1,0 +1,200 @@
+[
+ {
+  "slug": "autolaveuses",
+  "name": "Autolaveuses",
+  "label": "AUTOLAVEUSE",
+  "families": [
+   "autolaveuses",
+   "autoportees"
+  ],
+  "intro": [
+   "Avec notre autolaveuse autoportée GRILLOO, la propreté devient une expérience sans effort. Alliant puissance et manœuvrabilité, elle redéfinit les normes du nettoyage des surfaces, offrant une performance exceptionnelle pour les environnements professionnels et industriels."
+  ],
+  "criteria": [
+   "Rendement surfacique (m²/h)",
+   "Largeur de nettoyage",
+   "Réservoir de solution",
+   "Autonomie par charge",
+   "Accompagnée, autoportée ou autonome"
+  ],
+  "faq": [
+   {
+    "q": "Quel rendement pour une autolaveuse GRILLOO ?",
+    "a": "De {productivity.min} à {productivity.max} m²/h selon le modèle (rendements théoriques du catalogue)."
+   },
+   {
+    "q": "Quelle autonomie ?",
+    "a": "De {autonomy.min} à {autonomy.max} h par charge selon le modèle."
+   },
+   {
+    "q": "Quelle largeur de nettoyage ?",
+    "a": "De {width.min} à {width.max} mm."
+   }
+  ]
+ },
+ {
+  "slug": "aspirateurs",
+  "name": "Aspirateurs",
+  "label": "ASPIRATEUR",
+  "families": [
+   "aspirateurs"
+  ],
+  "intro": [
+   "Les aspirateurs GRILLOO incarnent l’efficacité silencieuse. Conçus pour éliminer la saleté en profondeur, nos aspirateurs offrent une aspiration puissante, une filtration avancée et une ergonomie pensée pour simplifier votre routine de nettoyage.",
+   "Qu’il s’agisse de nettoyer de grandes surfaces, de traiter les espaces humides ou de retirer de l’eau : les aspirateurs eau et poussière professionnels GRILLOO GS conviennent à un large éventail de travaux de nettoyage dans l’industrie et le commerce."
+  ],
+  "criteria": [
+   "Capacité de la cuve",
+   "Puissance",
+   "Eau et poussière ou poussière seule",
+   "Cuve inox ou PVC",
+   "Usage industriel ou zones à poussières explosives"
+  ],
+  "faq": [
+   {
+    "q": "Quelles capacités de cuve ?",
+    "a": "De {tank.min} à {tank.max} litres selon le modèle."
+   },
+   {
+    "q": "Quelles puissances ?",
+    "a": "De {power.min} à {power.max} W selon le modèle."
+   },
+   {
+    "q": "Existe-t-il des modèles industriels ?",
+    "a": "Oui : la gamme GS-TNE et GS-TEX comprend des aspirateurs industriels, dont des modèles antidéflagrants (voir les fiches)."
+   }
+  ]
+ },
+ {
+  "slug": "balayeuses",
+  "name": "Balayeuses",
+  "label": "BALAYEUSE",
+  "families": [
+   "balayeuses"
+  ],
+  "intro": [
+   "La balayeuse GRILLOO offre une solution rapide et efficace pour le nettoyage des sols extérieurs. Avec une conception robuste et une capacité de collecte élevée, elle garantit un environnement propre et accueillant."
+  ],
+  "criteria": [
+   "Rendement surfacique (m²/h)",
+   "Largeur de balayage",
+   "Capacité du bac à déchets",
+   "Manuelle, accompagnée ou autoportée",
+   "Intérieur ou extérieur"
+  ],
+  "faq": [
+   {
+    "q": "Quel rendement pour une balayeuse GRILLOO ?",
+    "a": "De {productivity.min} à {productivity.max} m²/h selon le modèle."
+   },
+   {
+    "q": "Quelle largeur de balayage ?",
+    "a": "De {width.min} à {width.max} mm, brosses latérales comprises."
+   },
+   {
+    "q": "Quelle capacité de bac ?",
+    "a": "De {tank.min} à {tank.max} litres selon le modèle."
+   }
+  ]
+ },
+ {
+  "slug": "traitement-des-sols",
+  "name": "Traitement des sols",
+  "label": "MONOBROSSE · POLISSEUSE",
+  "families": [
+   "monobrosses",
+   "polisseuses"
+  ],
+  "intro": [
+   "La monobrosse GRILLOO est l’alliée de vos sols. Polyvalente et robuste, elle restaure la brillance de vos surfaces avec une efficacité remarquable. Que ce soit pour le polissage ou la préparation des sols avant le traitement, la monobrosse GRILLOO excelle dans chaque application.",
+   "Nos lustreuses GRILLOO apportent la touche finale à vos sols. Conçues pour offrir une brillance éclatante, elles combinent performance et facilité d’utilisation pour un résultat professionnel à chaque utilisation."
+  ],
+  "criteria": [
+   "Lavage, décapage ou lustrage",
+   "Vitesse de rotation",
+   "Diamètre du plateau",
+   "Puissance du moteur",
+   "Poids et lestage"
+  ],
+  "faq": [
+   {
+    "q": "Monobrosse ou polisseuse ?",
+    "a": "Les monobrosses du catalogue servent au lavage et au décapage (et à la cristallisation pour la M4) ; les polisseuses donnent la brillance aux sols. La vitesse de rotation de chaque modèle figure sur sa fiche."
+   },
+   {
+    "q": "Quelles puissances ?",
+    "a": "De {power.min} à {power.max} W selon le modèle."
+   },
+   {
+    "q": "Peut-on rénover un sol en pierre ?",
+    "a": "Oui, voir notre guide de rénovation en 7 étapes et les polisseuses GP1800."
+   }
+  ]
+ },
+ {
+  "slug": "textiles-sechage",
+  "name": "Textiles & séchage",
+  "label": "INJECTEUR · SOUFFLEUR",
+  "families": [
+   "injecteurs",
+   "souffleurs"
+  ],
+  "intro": [
+   "La technologie GRILLOO d’injecteur-extracteur offre un nettoyage en profondeur des tissus et des revêtements. Rétablissez la fraîcheur de vos tapis et textiles avec cette solution polyvalente qui aspire la saleté pour des résultats de nettoyage impeccables."
+  ],
+  "criteria": [
+   "Moquettes, tapis ou sièges",
+   "Capacité des réservoirs",
+   "Largeur de travail",
+   "Débit d’air (souffleurs)",
+   "Encombrement et transport"
+  ],
+  "faq": [
+   {
+    "q": "À quoi sert un injecteur-extracteur ?",
+    "a": "L’eau et le détergent sont pulvérisés dans les fibres puis immédiatement réaspirés : le textile est nettoyé en profondeur et sèche vite."
+   },
+   {
+    "q": "Pourquoi un souffleur ?",
+    "a": "Les souffleurs accélèrent le séchage des moquettes et des sols durs après lavage."
+   },
+   {
+    "q": "Quelles capacités ?",
+    "a": "De {tank.min} à {tank.max} litres selon le modèle."
+   }
+  ]
+ },
+ {
+  "slug": "equipements-specialises",
+  "name": "Équipements spécialisés",
+  "label": "ÉQUIPEMENT",
+  "families": [
+   "escalators",
+   "equipements"
+  ],
+  "intro": [
+   "Machines d’escalator, perche télescopique, nettoyeur haute pression, canon à mousse et compresseurs : les équipements GRILLOO pour les besoins spécifiques."
+  ],
+  "criteria": [
+   "Escalators et tapis roulants",
+   "Vitres, façades et panneaux solaires",
+   "Haute pression",
+   "Moussage et désinfection",
+   "Air comprimé"
+  ],
+  "faq": [
+   {
+    "q": "Comment nettoyer un escalator ?",
+    "a": "Les machines GE se posent sur les marches et nettoient les rainures par brossage, détergent et aspiration (voir les fiches GE30, GE33, GE30B)."
+   },
+   {
+    "q": "Quels compresseurs ?",
+    "a": "La gamme de compresseurs à pistons GRILLOO V / W va de 1,5 kW à 15 kW (détail des modèles sur la fiche)."
+   },
+   {
+    "q": "Quel nettoyeur haute pression ?",
+    "a": "Le GNH150 travaille de 30 à 150 bar (190 bar maximum)."
+   }
+  ]
+ }
+]

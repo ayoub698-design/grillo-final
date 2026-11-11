@@ -1,0 +1,210 @@
+{
+  "style": "Editorial architectural photography, high-key, bright and airy, abundant soft natural daylight, white and very light neutral tones, low contrast, clean minimalist composition with generous negative space, contemporary Moroccan architecture, shot on a full-frame camera, 35mm lens, natural colours, photorealistic. Strictly no people facing the camera, no text, no signage, no letters, no logos, no brand names, no cleaning machines, no vacuum cleaners, no equipment in frame.",
+  "images": [
+    {
+      "id": "amb-clinique",
+      "size": "1536x1024",
+      "prompt": "Long empty corridor of a modern private clinic in Casablanca, glossy white resin floor reflecting the daylight, white walls, light oak handrail, large window at the end, perfectly clean."
+    },
+    {
+      "id": "amb-entrepot",
+      "size": "1536x1024",
+      "prompt": "Interior of a vast modern logistics warehouse near Tanger Med port, light grey polished concrete floor with painted aisle lines, tall white racking softly out of focus, skylights flooding the space with daylight."
+    },
+    {
+      "id": "amb-mall",
+      "size": "1536x1024",
+      "prompt": "Bright atrium of a contemporary shopping mall in Rabat, large pale terrazzo floor, white balconies, glass roof with daylight, a few blurred shoppers far in the background seen from behind."
+    },
+    {
+      "id": "amb-hotel",
+      "size": "1536x1024",
+      "prompt": "Lobby of a luxury hotel in Marrakech, white Carrara marble floor with a subtle zellige border in pale cyan and white, white tadelakt walls, arches, sheer curtains, morning light."
+    },
+    {
+      "id": "amb-agro",
+      "size": "1536x1024",
+      "prompt": "Spotless food processing hall, white epoxy floor, stainless steel tables and white walls, bright even lighting, hygienic atmosphere, no workers."
+    },
+    {
+      "id": "amb-gare",
+      "size": "1536x1024",
+      "prompt": "Concourse of a modern railway station in Morocco with a large light stone floor, white geometric ceiling with moucharabieh-inspired patterns letting in daylight, very spacious, a few distant travellers seen from behind."
+    },
+    {
+      "id": "amb-parking",
+      "size": "1536x1024",
+      "prompt": "Clean covered car park, pale grey sealed concrete floor, white columns, soft daylight from the open side, no cars, minimal and calm."
+    },
+    {
+      "id": "amb-escalator",
+      "size": "1536x1024",
+      "prompt": "Pair of modern escalators with brushed stainless steel steps in a bright white shopping centre, daylight from a glass roof, empty, clean, graphic perspective."
+    },
+    {
+      "id": "tex-marbre-sale",
+      "size": "1536x1024",
+      "prompt": "Top-down orthographic view of a white Carrara marble floor, evenly lit by soft daylight, covered with a thin dull layer of grey dust, faint footprints and light smudges, matte and slightly hazy, still bright overall. Flat lay, no perspective, no objects."
+    },
+    {
+      "id": "tex-marbre-propre",
+      "size": "1536x1024",
+      "prompt": "Top-down orthographic view of a white Carrara marble floor, evenly lit by soft daylight, freshly cleaned and polished, glossy with soft reflections of window light, crisp veins. Flat lay, no perspective, no objects."
+    },
+    {
+      "id": "tex-terrazzo-sale",
+      "size": "1536x1024",
+      "prompt": "Top-down orthographic view of a light terrazzo floor with small white, grey and pale cyan chips, evenly lit, covered with a thin dull layer of dust and light scuff marks, matte and slightly hazy, still bright. Flat lay, no objects."
+    },
+    {
+      "id": "tex-terrazzo-propre",
+      "size": "1536x1024",
+      "prompt": "Top-down orthographic view of a light terrazzo floor with small white, grey and pale cyan chips, evenly lit, freshly cleaned and polished, glossy with soft light reflections. Flat lay, no objects."
+    },
+    {
+      "id": "tex-beton-sale",
+      "size": "1536x1024",
+      "prompt": "Top-down orthographic view of a pale polished concrete floor, evenly lit by daylight, covered with a thin dull film of dust and faint tyre marks, matte, still light-toned. Flat lay, no objects."
+    },
+    {
+      "id": "tex-beton-propre",
+      "size": "1536x1024",
+      "prompt": "Top-down orthographic view of a pale polished concrete floor, evenly lit by daylight, freshly cleaned, smooth satin sheen with soft reflections. Flat lay, no objects."
+    },
+    {
+      "id": "obj-disque-brosse",
+      "size": "1024x1024",
+      "background": "transparent",
+      "prompt": "Product photo seen exactly from above: a round floor-machine scrubbing brush disc with dense white nylon bristles and a light grey centre hub, isolated, soft shadowless studio light, transparent background.",
+      "style": "object"
+    },
+    {
+      "id": "obj-pad",
+      "size": "1024x1024",
+      "background": "transparent",
+      "prompt": "Product photo seen exactly from above: a round white non-woven floor polishing pad with a centre hole, fine fibrous texture, isolated, soft studio light, transparent background.",
+      "style": "object"
+    },
+    {
+      "id": "obj-plateau",
+      "size": "1024x1024",
+      "background": "transparent",
+      "prompt": "Product photo seen exactly from above: a round pad driver plate for a floor machine, white plastic with a fine radial pattern of small bristle tufts on the rim, isolated, soft studio light, transparent background.",
+      "style": "object"
+    },
+    {
+      "id": "obj-goutte",
+      "size": "1024x1024",
+      "background": "transparent",
+      "prompt": "A single perfect clear water droplet, macro photography, crystal clear with a very subtle pale cyan reflection, isolated, transparent background.",
+      "style": "object"
+    },
+    {
+      "id": "obj-ecume",
+      "size": "1024x1024",
+      "background": "transparent",
+      "prompt": "A round cluster of fine white cleaning foam bubbles seen from above, airy and delicate, a few iridescent pale cyan highlights, isolated, transparent background.",
+      "style": "object"
+    },
+    {
+      "id": "obj-brosse-laterale",
+      "size": "1024x1024",
+      "background": "transparent",
+      "prompt": "Product photo seen exactly from above: a round side brush of a floor sweeper with long splayed light grey bristles radiating from a white hub, isolated, soft studio light, transparent background.",
+      "style": "object"
+    },
+    {
+      "id": "mat-papier",
+      "size": "1536x1024",
+      "prompt": "Close-up of thick white cotton paper with a very fine natural texture, evenly lit by soft daylight, almost pure white, minimal, abstract background. Flat, no objects.",
+      "style": "material"
+    },
+    {
+      "id": "mat-polymere",
+      "size": "1536x1024",
+      "prompt": "Close-up of a smooth matte white polymer surface with a very soft curved edge catching the daylight, industrial design detail, almost pure white, abstract minimal background, no objects, no text."
+    },
+    {
+      "id": "mat-eau-sol-poli",
+      "size": "1536x1024",
+      "prompt": "Low-angle close-up of a few clear water droplets on a freshly polished white floor, bright daylight reflection, shallow depth of field, almost pure white, minimal abstract background."
+    },
+    {
+      "id": "hero-etiquette-l",
+      "size": "1536x1024",
+      "prompt": "A grand, bright, minimalist gallery hall of contemporary Moroccan architecture: white Carrara marble floor polished to a mirror shine, tall white arches and slender columns, a single low white rectangular stone plinth standing EMPTY in the centre of the lower third of the frame, a soft beam of daylight from a high skylight falling diagonally onto the empty plinth, dust-free air, generous empty space above for a headline, museum-like calm and precision. Wide landscape composition."
+    },
+    {
+      "id": "hero-etiquette-s",
+      "size": "1024x1024",
+      "prompt": "A grand, bright, minimalist gallery hall of contemporary Moroccan architecture: white Carrara marble floor polished to a mirror shine, tall white arches and slender columns, a single low white rectangular stone plinth standing EMPTY in the centre of the lower third of the frame, a soft beam of daylight from a high skylight falling diagonally onto the empty plinth, dust-free air, generous empty space above for a headline, museum-like calm and precision. Square composition."
+    },
+    {
+      "id": "hero-etiquette-p",
+      "size": "1024x1536",
+      "prompt": "A grand, bright, minimalist gallery hall of contemporary Moroccan architecture: white Carrara marble floor polished to a mirror shine, tall white arches and slender columns, a single low white rectangular stone plinth standing EMPTY in the centre of the lower third of the frame, a soft beam of daylight from a high skylight falling diagonally onto the empty plinth, dust-free air, generous empty space above for a headline, museum-like calm and precision. Vertical portrait composition: keep the main subject in the lower half and empty space in the upper third."
+    },
+    {
+      "id": "hero-trace-l",
+      "size": "1536x1024",
+      "prompt": "Floor-level wide view across a vast, empty lobby with a white marble floor that is perfectly polished and reflective in the lower half of the image, soft morning light from tall windows on the right creating long glossy reflections, white Moroccan arches softly out of focus in the far background, the floor plane occupies the lower 55% of the frame and is completely empty, serene and luminous. Wide landscape composition."
+    },
+    {
+      "id": "hero-trace-s",
+      "size": "1024x1024",
+      "prompt": "Floor-level wide view across a vast, empty lobby with a white marble floor that is perfectly polished and reflective in the lower half of the image, soft morning light from tall windows on the right creating long glossy reflections, white Moroccan arches softly out of focus in the far background, the floor plane occupies the lower 55% of the frame and is completely empty, serene and luminous. Square composition."
+    },
+    {
+      "id": "hero-trace-p",
+      "size": "1024x1536",
+      "prompt": "Floor-level wide view across a vast, empty lobby with a white marble floor that is perfectly polished and reflective in the lower half of the image, soft morning light from tall windows on the right creating long glossy reflections, white Moroccan arches softly out of focus in the far background, the floor plane occupies the lower 55% of the frame and is completely empty, serene and luminous. Vertical portrait composition: keep the main subject in the lower half and empty space in the upper third."
+    },
+    {
+      "id": "hero-rondeur-l",
+      "size": "1536x1024",
+      "prompt": "Top-down aerial view of a glossy pale terrazzo floor with faint concentric circular polishing marks radiating from the centre, a few delicate rings of white cleaning foam, subtle pale cyan reflections of light, a large empty circular area in the centre of the frame, extremely clean, minimal, graphic and calm. Wide landscape composition."
+    },
+    {
+      "id": "hero-rondeur-s",
+      "size": "1024x1024",
+      "prompt": "Top-down aerial view of a glossy pale terrazzo floor with faint concentric circular polishing marks radiating from the centre, a few delicate rings of white cleaning foam, subtle pale cyan reflections of light, a large empty circular area in the centre of the frame, extremely clean, minimal, graphic and calm. Square composition."
+    },
+    {
+      "id": "hero-rondeur-p",
+      "size": "1024x1536",
+      "prompt": "Top-down aerial view of a glossy pale terrazzo floor with faint concentric circular polishing marks radiating from the centre, a few delicate rings of white cleaning foam, subtle pale cyan reflections of light, a large empty circular area in the centre of the frame, extremely clean, minimal, graphic and calm. Vertical portrait composition: keep the main subject in the lower half and empty space in the upper third."
+    },
+    {
+      "id": "det-brosse-terrazzo",
+      "size": "1024x1024",
+      "prompt": "Macro close-up of the white nylon bristles of a round floor scrubbing brush pressing on a wet light terrazzo floor, tiny bubbles of foam, shallow depth of field, bright daylight, no machine body visible."
+    },
+    {
+      "id": "det-raclette-eau",
+      "size": "1024x1024",
+      "prompt": "Close-up at floor level of a thin film of clean water on polished white marble with a perfectly straight clean dry line where a rubber squeegee blade has just passed, bright soft daylight reflections, no machine visible."
+    },
+    {
+      "id": "det-ecume",
+      "size": "1024x1024",
+      "prompt": "Close-up of fine white cleaning foam spreading on large pale ceramic floor tiles, delicate bubbles catching soft daylight, minimal and fresh."
+    },
+    {
+      "id": "det-pierre",
+      "size": "1024x1024",
+      "prompt": "Extreme close-up of freshly polished white marble surface with fine grey veins and a crisp mirror reflection of daylight, abstract and luxurious."
+    },
+    {
+      "id": "det-entrepot",
+      "size": "1024x1536",
+      "prompt": "Vertical view down a bright clean warehouse aisle with white racking, light grey sealed concrete floor with a glossy sheen and painted lines, skylights, no people, no vehicles."
+    },
+    {
+      "id": "det-hotel",
+      "size": "1024x1536",
+      "prompt": "Vertical view of an elegant bright hotel corridor in Marrakech with a polished pale marble floor, white tadelakt walls and soft arches, a small zellige detail, warm daylight, no people."
+    }
+  ],
+  "objectStyle": "Studio product photograph, isolated object only, centred, seen exactly from above, soft even shadowless light, pure transparent background with no scene, no room, no architecture, no floor, no shadow, no text, no logo. Photorealistic, crisp detail, white and light grey tones with at most a hint of pale cyan.",
+  "materialStyle": "Abstract close-up material photograph filling the entire frame edge to edge, no scene, no architecture, no room, no objects, no text, no logo. Soft even daylight, almost pure white tones, very subtle texture, photorealistic."
+}

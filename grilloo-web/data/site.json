@@ -1,0 +1,111 @@
+{
+  "name": "GRILLOO",
+  "tagline": "Leader des solutions de nettoyage",
+  "domain": "https://www.grilloo.net",
+  "pdf": "catalogue-grilloo-2024.pdf",
+  "todo": "À fournir par GRILLOO",
+  "contact": {
+    "address": "À fournir par GRILLOO",
+    "city": "Maroc",
+    "phone": "À fournir par GRILLOO",
+    "email": "À fournir par GRILLOO",
+    "hours": "À fournir par GRILLOO",
+    "whatsapp": null,
+    "mailto": null
+  },
+  "social": [
+    {
+      "name": "Facebook",
+      "url": null
+    },
+    {
+      "name": "Instagram",
+      "url": null
+    },
+    {
+      "name": "YouTube",
+      "url": null
+    },
+    {
+      "name": "TikTok",
+      "url": null
+    },
+    {
+      "name": "LinkedIn",
+      "url": null
+    }
+  ],
+  "nav": [
+    {
+      "label": "Gammes",
+      "file": "catalogue.html",
+      "mega": true
+    },
+    {
+      "label": "Catalogue",
+      "file": "catalogue.html"
+    },
+    {
+      "label": "Secteurs",
+      "file": "secteurs.html"
+    },
+    {
+      "label": "Guide de choix",
+      "file": "guide-de-choix.html"
+    },
+    {
+      "label": "RoboClean G+",
+      "file": "robotclean-g-plus.html"
+    },
+    {
+      "label": "À propos",
+      "file": "a-propos.html"
+    }
+  ],
+  "stoneSteps": [
+    {
+      "n": 1,
+      "title": "Meulage initial",
+      "text": "Diamant métallique #16 ou #30, selon la dureté du sol."
+    },
+    {
+      "n": 2,
+      "title": "Meulage fin",
+      "text": "Diamant métallique #80, #150 puis #300, par étapes."
+    },
+    {
+      "n": 3,
+      "title": "Réparation des rayures",
+      "text": "Tampons de polissage en résine #50, pour effacer les rayures des diamants métalliques."
+    },
+    {
+      "n": 4,
+      "title": "Durcisseur",
+      "text": "Vaporiser le durcisseur et garder le sol humide pendant 2 heures. Si le sol absorbe rapidement, vaporiser à nouveau."
+    },
+    {
+      "n": 5,
+      "title": "Polissage fin",
+      "text": "Tampons de polissage en résine #150, #300 puis #500."
+    },
+    {
+      "n": 6,
+      "title": "Polissage super fin",
+      "text": "Tampons de polissage en résine #1000, #2000 puis #3000."
+    },
+    {
+      "n": 7,
+      "title": "Crème de polissage",
+      "text": "Appliquer la crème au balai à brosse robuste pour couvrir uniformément le sol ; après séchage, finir au brunissoir à grande vitesse GP1800 avec des tampons noirs."
+    }
+  ],
+  "stoneMachines": [
+    "gp1800",
+    "gp1800rp",
+    "gp1800rpm",
+    "m4",
+    "msc8",
+    "gs-tne4"
+  ],
+  "guarantee": "La garantie GRILLOO varie selon le type d’équipement : durée, éléments couverts (défauts de fabrication, pièces défectueuses, problèmes de performance liés à un usage normal), conditions d’utilisation et procédure de réclamation sont précisés pour chaque produit. Contactez le service client GRILLOO pour connaître les conditions exactes de votre machine."
+}

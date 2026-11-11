@@ -1,0 +1,92 @@
+[
+ {
+  "slug": "sante",
+  "name": "Santé & établissements médicalisés",
+  "intro": "Couloirs, chambres, halls d’accueil : les machines que le catalogue recommande pour les établissements médicalisés et les environnements pharmaceutiques.",
+  "products": [
+   "g53",
+   "g54",
+   "g50",
+   "gs-tne3",
+   "gs-tex3",
+   "sus304"
+  ]
+ },
+ {
+  "slug": "logistique",
+  "name": "Logistique, entrepôts & parkings",
+  "intro": "Grandes surfaces, poussière, allées de circulation : les machines que le catalogue destine aux entrepôts, aires de chargement et parkings.",
+  "products": [
+   "gb3",
+   "gbe1400a",
+   "gbe2000",
+   "gbe2500"
+  ]
+ },
+ {
+  "slug": "industrie",
+  "name": "Industrie & agroalimentaire",
+  "intro": "Ateliers, production, agroalimentaire, environnements à poussières : les équipements que le catalogue associe aux sites industriels.",
+  "products": [
+   "g01m",
+   "g02m",
+   "gs-tne3",
+   "gs-tex3",
+   "gs-tex1",
+   "gs-tne2",
+   "gb3",
+   "gbe3",
+   "gbe1400a",
+   "gbe2000",
+   "sus304"
+  ]
+ },
+ {
+  "slug": "commerce",
+  "name": "Commerce & surfaces de vente",
+  "intro": "Surfaces de vente, showrooms, escalators : les machines que le catalogue cite pour les espaces commerciaux.",
+  "products": [
+   "g01m",
+   "g02m",
+   "g5",
+   "g55",
+   "g53",
+   "g54",
+   "g50",
+   "g70",
+   "gsb2",
+   "gsb660",
+   "msc8",
+   "gbe1400a",
+   "gbe2500",
+   "ge30",
+   "ge30b"
+  ]
+ },
+ {
+  "slug": "hotellerie",
+  "name": "Hôtellerie & restauration",
+  "intro": "Halls, moquettes, cuisines : les machines que le catalogue associe à l’hôtellerie et aux cuisines collectives.",
+  "products": [
+   "gsb2",
+   "msc8",
+   "sus304"
+  ]
+ },
+ {
+  "slug": "collectivites",
+  "name": "Collectivités & espaces publics",
+  "intro": "Bâtiments publics, écoles, voirie : les machines que le catalogue destine aux collectivités et aux espaces publics.",
+  "products": [
+   "g01m",
+   "g02m",
+   "gsb2",
+   "msc8",
+   "gb3",
+   "gbe1400a",
+   "gbe2000",
+   "gbe2500",
+   "sus304"
+  ]
+ }
+]

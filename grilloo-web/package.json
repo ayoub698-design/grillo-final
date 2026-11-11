@@ -1,0 +1,22 @@
+{
+  "name": "grilloo-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/",
+    "build": "node src/build.mjs",
+    "gen:images": "node scripts/gen-images.mjs"
+  },
+  "devDependencies": {
+    "@fontsource-variable/hanken-grotesk": "5.3.0",
+    "@fontsource-variable/host-grotesk": "5.3.0",
+    "@fontsource-variable/inter-tight": "5.3.0",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
+    "@fontsource-variable/unbounded": "5.3.0",
+    "@fontsource/barlow-condensed": "5.3.0",
+    "gsap": "3.15.1",
+    "lenis": "1.3.27",
+    "sharp": "^0.34.5"
+  }
+}
