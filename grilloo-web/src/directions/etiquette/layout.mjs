@@ -38,6 +38,7 @@ function header(ctx) {
       <a class="e-btn e-btn--ink e-btn--sm e-header__cta" href="${ctx.link('contact.html')}"><span class="e-btn__txt">Demander un devis</span>${icon('arrow', 'e-btn__ico')}</a>
       <button class="e-burger" type="button" aria-expanded="false" aria-controls="e-drawer" data-drawer-toggle><span class="sr">Menu</span>${icon('menu')}</button>
     </div>
+    <span class="e-header__progress" aria-hidden="true" data-progress></span>
     ${megaMenu(ctx)}
     <div class="e-drawer" id="e-drawer" data-drawer hidden>
       <nav class="e-wrap" aria-label="Navigation mobile">
@@ -104,6 +105,7 @@ ${ctx.head(styleTags(ctx))}
 </head>
 <body class="e-site e-page--${page || ctx.route.kind}">
 <a class="e-skip" href="#main">Aller au contenu</a>
+<div class="e-pt" aria-hidden="true" data-pt><span class="e-pt__sheet"><span class="e-pt__mark"><img src="${ctx.asset('img/brand/logo-mark-ink.png')}" alt="" width="88" height="32"><span class="e-pt__rule"></span><span class="e-label">Catalogue 2024</span></span></span></div>
 ${header(ctx)}
 <main id="main">${body}</main>
 ${footer(ctx)}
